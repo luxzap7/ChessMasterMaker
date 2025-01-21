@@ -31,7 +31,6 @@ class FavoritesAdapter(
     override fun onBindViewHolder(holder: FavoriteViewHolder, position: Int) {
         val favoriteItem = favoriteItems[position]
 
-        // Load image using Picasso
         Picasso.get()
             .load(favoriteItem.imageUrl)
             .into(holder.imageView)

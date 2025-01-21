@@ -17,10 +17,8 @@ class TestActivity : AppCompatActivity() {
     private var currentQuestionIndex = 0
     private var score = 0
 
-    // Lista pitanja, uključujući i predefinirana i korisnički dodana
     private val testQuestions = mutableListOf<TestQuestion>()
 
-    // Predefinirana pitanja
     private val predefinedQuestions = listOf(
         TestQuestion(imageUri = null, imageRes = R.drawable.test_image_1, correctOption = 0),
         TestQuestion(imageUri = null, imageRes = R.drawable.test_image_2, correctOption = 1),
@@ -40,13 +38,10 @@ class TestActivity : AppCompatActivity() {
 
         firestore = FirebaseFirestore.getInstance()
 
-        // Učitaj predefinirana i korisnički kreirana pitanja
         loadQuestions()
 
-        // Inicijalni prikaz prvog pitanja
         displayQuestion()
 
-        // Gumbovi za odgovore
         val option1Button = findViewById<Button>(R.id.option1Button)
         val option2Button = findViewById<Button>(R.id.option2Button)
         val option3Button = findViewById<Button>(R.id.option3Button)
@@ -55,9 +50,8 @@ class TestActivity : AppCompatActivity() {
         option2Button.setOnClickListener { checkAnswer(1) }
         option3Button.setOnClickListener { checkAnswer(2) }
 
-        // Gumb za favorite
         val favoriteButton = findViewById<ImageView>(R.id.favoriteButton)
-        val currentTestId = "test_1" // Jedinstveni ID za test
+        val currentTestId = "test_1"
         checkIfFavorite(currentTestId, favoriteButton)
 
         favoriteButton.setOnClickListener {
@@ -66,24 +60,20 @@ class TestActivity : AppCompatActivity() {
     }
 
     data class TestQuestion(
-        val imageUri: Uri? = null, // URI za korisničke slike
-        val imageRes: Int? = null, // Resurs za predefinirane slike
+        val imageUri: Uri? = null,
+        val imageRes: Int? = null,
         val correctOption: Int
     )
 
-    // Učitaj predefinirana i korisnički kreirana pitanja
     private fun loadQuestions() {
-        // Dodaj predefinirana pitanja
         testQuestions.addAll(predefinedQuestions)
 
-        // Dodaj korisnički kreirane zadatke
         testQuestions.addAll(CreateTestActivity.newlyCreatedTasks)
     }
 
     private fun displayQuestion() {
         val currentQuestion = testQuestions[currentQuestionIndex]
 
-        // Postavi sliku
         val chessBoardImage = findViewById<ImageView>(R.id.chessBoardImage)
         if (currentQuestion.imageUri != null) {
             chessBoardImage.setImageURI(currentQuestion.imageUri)
@@ -91,7 +81,6 @@ class TestActivity : AppCompatActivity() {
             chessBoardImage.setImageResource(currentQuestion.imageRes)
         }
 
-        // Postavite opcije za gumbove (opcionalno)
         val option1Button = findViewById<Button>(R.id.option1Button)
         val option2Button = findViewById<Button>(R.id.option2Button)
         val option3Button = findViewById<Button>(R.id.option3Button)
@@ -102,12 +91,10 @@ class TestActivity : AppCompatActivity() {
     }
 
     private fun checkAnswer(selectedOption: Int) {
-        // Provjeri odgovor
         if (selectedOption == testQuestions[currentQuestionIndex].correctOption) {
             score++
         }
 
-        // Pređi na sljedeće pitanje ili prikaži rezultate
         if (currentQuestionIndex < testQuestions.size - 1) {
             currentQuestionIndex++
             displayQuestion()
