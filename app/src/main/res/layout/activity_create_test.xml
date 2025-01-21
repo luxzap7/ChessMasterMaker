@@ -1,0 +1,66 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Pozadinska slika -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="center"
+        android:src="@drawable/checkers" />
+
+    <!-- Sadržaj aplikacije -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:gravity="center"
+        android:background="#80000000"> <!-- Poluprozirna pozadina za kontrast -->
+
+        <!-- Tekst za objašnjenje -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Za kreiranje novog zadatka odaberite sliku i unesite točan odgovor (1-3)."
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_marginBottom="16dp"
+            android:textColor="#FFFFFF" />
+
+        <!-- Gumb za odabir slike -->
+        <Button
+            android:id="@+id/selectImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Odaberi sliku"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Prikaz odabrane slike -->
+        <ImageView
+            android:id="@+id/imagePreview"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="Preview of selected image"
+            android:scaleType="centerCrop"
+            android:background="#DDDDDD" />
+
+        <!-- Unos točnog odgovora -->
+        <EditText
+            android:id="@+id/correctOptionInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Unesite točan odgovor (1-3)"
+            android:inputType="number"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Gumb za spremanje -->
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Spremi zadatak" />
+    </LinearLayout>
+
+</FrameLayout>

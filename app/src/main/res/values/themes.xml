@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.CHESS_Master_Maker" parent="android:Theme.Material.Light.NoActionBar" />
+    <!-- Glavna tema aplikacije -->
+    <style name="Theme.CHESS_Master_Maker" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Primarne boje -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryDark">@color/purple_700</item>
+        <item name="colorAccent">@color/teal_200</item>
+
+        <!-- Pozadina aplikacije -->
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
+
 </resources>
